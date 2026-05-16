@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(python -c \"from PIL import Image; import os; p='c:/Users/Eduardo Cunha/Desktop/EducaFacil/img/'; [print\\(f, Image.open\\(p+f\\).size\\) for f in os.listdir\\(p\\) if 'banner' in f]\")"
-    ]
-  }
-}
