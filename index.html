@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Educa Fácil EAD - Cursos Técnicos online a partir de 6 meses, reconhecidos pelo MEC."
+    />
+    <title>Educa Fácil EAD - Sua escola on-line</title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top announcement bar -->
+    <div class="top-bar" aria-label="Aviso">
+      <div class="top-bar__track">
+        <span
+          ><i class="fa-solid fa-bell"></i> 🚀 Transforme seu futuro com cursos
+          técnicos de verdade.</span
+        >
+        <span
+          ><i class="fa-solid fa-bell"></i> 💼 Capacitação profissional para
+          quem quer sair na frente.</span
+        >
+        <span
+          ><i class="fa-solid fa-bell"></i> 🚀 Todo grande futuro começa com uma
+          decisão.</span
+        >
+        <span aria-hidden="true"
+          ><i class="fa-solid fa-bell"></i> 🚀 Transforme seu futuro com cursos
+          técnicos de verdade.</span
+        >
+        <span aria-hidden="true"
+          ><i class="fa-solid fa-bell"></i> 💼 Capacitação profissional para
+          quem quer sair na frente.</span
+        >
+        <span aria-hidden="true"
+          ><i class="fa-solid fa-bell"></i> 🚀 Todo grande futuro começa com uma
+          decisão.</span
+        >
+      </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+      <div class="container header__inner">
+        <a href="#" class="logo" aria-label="Educa Fácil EAD">
+          <img
+            src="img/logo.png"
+            alt="Educa Fácil EAD"
+            class="logo__img"
+            onerror="this.style.display = 'none'"
+          />
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" aria-label="Principal">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#cursos">Cursos</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="#faq">Perguntas Frequentes</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero carousel -->
+    <section class="hero" id="home" aria-label="Banner principal">
+      <div class="carousel" data-autoplay="5000">
+        <div class="carousel__track">
+          <div class="carousel__slide is-active">
+            <a
+              href="https://wa.me/5599000000000"
+              target="_blank"
+              rel="noopener"
+              class="carousel__link"
+              aria-label="Faça já sua inscrição"
+            >
+              <picture>
+                <source
+                  media="(max-width: 720px)"
+                  srcset="img/banner-1-mob.png"
+                />
+                <img
+                  src="img/banner-1.png"
+                  alt="Banner 1"
+                  onerror="this.classList.add('img-missing')"
+                />
+              </picture>
+            </a>
+          </div>
+          <div class="carousel__slide">
+            <picture>
+              <source
+                media="(max-width: 720px)"
+                srcset="img/banner-2-mob.png"
+              />
+              <img
+                src="img/banner-2.png"
+                alt="Banner 2"
+                onerror="this.classList.add('img-missing')"
+              />
+            </picture>
+          </div>
+          <div class="carousel__slide">
+            <picture>
+              <source
+                media="(max-width: 720px)"
+                srcset="img/banner-3-mob.png"
+              />
+              <img
+                src="img/banner-3.png"
+                alt="Banner 3"
+                onerror="this.classList.add('img-missing')"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <button
+          class="carousel__arrow carousel__arrow--left"
+          aria-label="Slide anterior"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button
+          class="carousel__arrow carousel__arrow--right"
+          aria-label="Próximo slide"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div
+          class="carousel__dots"
+          role="tablist"
+          aria-label="Selecionar slide"
+        >
+          <button
+            class="carousel__dot is-active"
+            role="tab"
+            aria-label="Ir para slide 1"
+          ></button>
+          <button
+            class="carousel__dot"
+            role="tab"
+            aria-label="Ir para slide 2"
+          ></button>
+          <button
+            class="carousel__dot"
+            role="tab"
+            aria-label="Ir para slide 3"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why study with us -->
+    <section class="why-us">
+      <div class="container">
+        <h2 class="section-title">
+          Por que estudar <span class="accent">conosco ?</span>
+        </h2>
+
+        <div class="why-us__grid">
+          <article class="card">
+            <div class="card__icon"><i class="fa-solid fa-briefcase"></i></div>
+            <p class="card__text">
+              Cursos voltados<br />
+              para profissões com<br />
+              <strong>alta demanda.</strong>
+            </p>
+            <div class="card__tag">100% Online</div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon"><i class="fa-solid fa-chart-line"></i></div>
+            <p class="card__text">
+              Aprenda<br />
+              com <strong>profissionais</strong><br />
+              <strong>experientes da área.</strong>
+            </p>
+            <div class="card__tag">Atualizado 2026</div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon"><i class="fa-solid fa-id-card"></i></div>
+            <p class="card__text">
+              Conclua seu curso<br />
+              técnico, e receba<br />
+              um certificado<br />
+              <strong>reconhecido pelo MEC.</strong>
+            </p>
+            <div class="card__tag">+5.000 alunos</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses CTA -->
+    <section class="courses" id="cursos">
+      <div class="container courses__inner">
+        <div class="courses__left">
+          <h2 class="section-title section-title--light">
+            Confira Nossos Cursos!
+          </h2>
+          <a href="#" class="btn btn--white">
+            VER CURSOS <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <p class="courses__desc">
+            Diversas opções de cursos para impulsionar<br />
+            sua carreira e abrir novas oportunidades<br />
+            para o seu futuro.
+          </p>
+        </div>
+
+        <div class="courses__right">
+          <ul class="courses__list">
+            <li>
+              <i class="fa-solid fa-book-open"></i>
+              <span>Cursos atualizados<br />com o mercado</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-award"></i>
+              <span>Certificado reconhecido<br />em todo o Brasil</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <span>Professores qualificados<br />e experientes</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">
+          O que nossos alunos <span class="accent">estão falando ?</span>
+        </h2>
+
+        <div class="testimonials__grid">
+          <figure class="proof">
+            <img
+              src="img/p1.png"
+              alt="Depoimento de aluno"
+              onerror="this.style.display = 'none'"
+            />
+          </figure>
+          <figure class="proof">
+            <img
+              src="img/p2.png"
+              alt="Depoimento de aluno"
+              onerror="this.style.display = 'none'"
+            />
+          </figure>
+          <figure class="proof">
+            <img
+              src="img/p3.png"
+              alt="Depoimento de aluno"
+              onerror="this.style.display = 'none'"
+            />
+          </figure>
+        </div>
+
+        <a
+          href="https://wa.me/5599000000000"
+          target="_blank"
+          rel="noopener"
+          class="btn btn--whatsapp"
+          id="contato"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Entre em contato<br />Clicando aqui!</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <h2 class="section-title section-title--light">Perguntas Frequentes</h2>
+
+        <div class="faq__list">
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> O que são os Cursos
+              Técnicos da Educa Fácil EAD? Como funcionam?
+            </summary>
+            <p>
+              Os Cursos Técnicos da Educa Fácil EAD são formações
+              profissionalizantes 100% online, com duração média de 6 a 18
+              meses. As aulas são disponibilizadas em uma plataforma digital,
+              com acesso a videoaulas, materiais de apoio e suporte de tutores.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Por que escolher um Curso
+              Técnico na Educa Fácil EAD? Quais as vantagens?
+            </summary>
+            <p>
+              Oferecemos flexibilidade de horários, certificado reconhecido pelo
+              MEC, professores qualificados, conteúdo atualizado e suporte
+              completo para o aluno.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Quais Cursos Técnicos a
+              Educa Fácil EAD oferece?
+            </summary>
+            <p>
+              Trabalhamos com cursos nas áreas de Administração, Tecnologia da
+              Informação, Saúde, Logística, Marketing Digital, entre outros.
+              Acesse a página de cursos para a lista completa.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Como faço para me
+              inscrever em um Curso Técnico da Educa Fácil EAD?
+            </summary>
+            <p>
+              Basta clicar em "Faça já sua inscrição", preencher o formulário
+              com seus dados e escolher o curso desejado. Em seguida, um
+              consultor entrará em contato.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Os Cursos Técnicos da
+              Educa Fácil EAD são reconhecidos pelo MEC?
+            </summary>
+            <p>
+              Sim. Todos os nossos cursos técnicos possuem certificação
+              reconhecida pelo MEC e validade em todo território nacional.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Qual a duração dos Cursos
+              Técnicos e como são as aulas?
+            </summary>
+            <p>
+              A duração varia entre 6 e 18 meses, conforme o curso escolhido. As
+              aulas são gravadas e disponibilizadas online, podendo ser
+              assistidas a qualquer momento.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Como funcionam as
+              avaliações e a certificação dos cursos?
+            </summary>
+            <p>
+              As avaliações são realizadas online, ao longo dos módulos. Ao
+              concluir todas as etapas, o aluno recebe o certificado digital e
+              impresso.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Qual o suporte oferecido
+              aos alunos durante o curso?
+            </summary>
+            <p>
+              Oferecemos suporte pedagógico, técnico e administrativo durante
+              toda a jornada do aluno, por chat, e-mail e WhatsApp.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Posso estudar de qualquer
+              lugar e em qualquer horário?
+            </summary>
+            <p>
+              Sim! Por ser 100% online, você pode estudar onde e quando quiser,
+              bastando ter acesso à internet.
+            </p>
+          </details>
+
+          <details class="faq__item">
+            <summary>
+              <i class="fa-solid fa-circle-plus"></i> Concluí o curso. Como
+              recebo meu certificado e quais as oportunidades no mercado de
+              trabalho?
+            </summary>
+            <p>
+              Após concluir todas as avaliações, o certificado é emitido em até
+              30 dias. Nossos cursos são pensados para atender as demandas
+              atuais do mercado, ampliando suas oportunidades profissionais.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__col">
+          <a href="#" class="logo logo--footer" aria-label="Educa Fácil EAD">
+            <img
+              src="img/logo.png"
+              alt="Educa Fácil EAD"
+              class="logo__img logo__img--footer"
+              onerror="this.style.display = 'none'"
+            />
+          </a>
+        </div>
+
+        <div class="footer__col footer__col--center">
+          <h3>Contato</h3>
+          <p><i class="fa-solid fa-phone"></i> 99000-0000</p>
+          <p><i class="fa-solid fa-envelope"></i> educafacilemail@gmail.com</p>
+          <p>
+            <a href="https://www.instagram.com/educafacilead/"
+              ><i class="fa-brands fa-instagram"> educafacilead</i></a
+            >
+          </p>
+        </div>
+
+        <div class="footer__col footer__col--right">
+          <h3>Links Úteis</h3>
+          <ul>
+            <li><a href="#">Como Funciona</a></li>
+            <li><a href="#">Privacidade e segurança</a></li>
+            <li><a href="#">Termos de uso</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__copy">
+        © Educa Fácil EAD<br />
+        Todos os direitos reservados. CNPJ: 00.000.000/0000-00
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+
+# Arquivos sensíveis
+.env
+.env.local
+
+# Claude / IA
+.claude/
+.cloud/
+
+# Logs
+*.log
+
+# Build
+dist/
+build/
+
+# VS Code
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
