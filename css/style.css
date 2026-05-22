@@ -652,6 +652,15 @@ ul {
   color: rgba(255, 255, 255, 0.16);
 }
 
+.course-card__banner:not(:has(img)) > i {
+  font-size: 80px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.course-card__banner:has(img) > i {
+  display: none;
+}
+
 .course-card__banner img {
   position: absolute;
   inset: 0;
