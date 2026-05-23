@@ -767,6 +767,51 @@ ul {
   display: none;
 }
 
+.load-more-wrapper {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.load-more-wrapper[hidden] {
+  display: none;
+}
+
+.load-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: var(--white);
+  color: var(--blue-700);
+  border: 2px solid var(--blue-500);
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.load-more:hover {
+  background: var(--blue-500);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elev);
+}
+
+.load-more i {
+  transition: transform 0.3s ease;
+}
+
+.load-more:hover i {
+  transform: translateY(3px);
+}
+
+.load-more[hidden] {
+  display: none;
+}
+
 .courses-no-results {
   text-align: center;
   padding: 60px 20px;

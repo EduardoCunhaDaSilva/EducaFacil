@@ -231,51 +231,79 @@
         });
 
         const totalCount = courseData.length;
+        const PAGE_SIZE = 6;
+        const loadMoreBtn = document.querySelector('#load-more-btn');
+        const loadMoreWrapper = document.querySelector('.load-more-wrapper');
+
         let rafId = null;
-        let lastTerm = null;
+        let lastKey = null;
+        let shownCount = Math.min(PAGE_SIZE, totalCount);
 
         const performFilter = () => {
             rafId = null;
             const raw = searchInput.value.slice(0, MAX_QUERY_LEN).trim();
             const term = normalize(raw);
+            const hasSearch = term !== '';
 
-            if (term === lastTerm) return;
-            lastTerm = term;
+            const key = `${term}|${shownCount}`;
+            if (key === lastKey) return;
+            lastKey = key;
 
-            let visible = 0;
-            for (const item of courseData) {
-                const match = term === '' || item.normalized.includes(term);
-                if (match !== item.visible) {
-                    item.card.classList.toggle('is-hidden', !match);
-                    item.visible = match;
+            let matchCount = 0;
+            courseData.forEach((item, index) => {
+                const matchesSearch = !hasSearch || item.normalized.includes(term);
+                if (matchesSearch) matchCount++;
+
+                const withinPage = hasSearch || matchCount <= shownCount;
+                const shouldShow = matchesSearch && withinPage;
+
+                if (shouldShow !== item.visible) {
+                    item.card.classList.toggle('is-hidden', !shouldShow);
+                    item.visible = shouldShow;
                 }
-                if (match) visible++;
-            }
+            });
+
+            const visibleNow = hasSearch ? matchCount : Math.min(shownCount, matchCount);
 
             if (searchCount) {
-                if (term === '') {
-                    searchCount.textContent = `${totalCount} cursos disponíveis`;
-                } else if (visible === 0) {
+                if (!hasSearch) {
+                    searchCount.textContent =
+                        shownCount >= totalCount
+                            ? `${totalCount} cursos disponíveis`
+                            : `Mostrando ${visibleNow} de ${totalCount} cursos`;
+                } else if (matchCount === 0) {
                     searchCount.textContent = '';
-                } else if (visible === 1) {
+                } else if (matchCount === 1) {
                     searchCount.textContent = '1 curso encontrado';
                 } else {
-                    searchCount.textContent = `${visible} cursos encontrados`;
+                    searchCount.textContent = `${matchCount} cursos encontrados`;
                 }
             }
 
             if (noResults) {
-                noResults.hidden = !(visible === 0 && term !== '');
+                noResults.hidden = !(matchCount === 0 && hasSearch);
             }
 
             if (courseGrid) {
-                courseGrid.style.display = visible === 0 && term !== '' ? 'none' : '';
+                courseGrid.style.display = matchCount === 0 && hasSearch ? 'none' : '';
             }
 
             if (searchClear) {
-                searchClear.hidden = term === '';
+                searchClear.hidden = !hasSearch;
+            }
+
+            if (loadMoreWrapper) {
+                const hasMore = !hasSearch && shownCount < totalCount;
+                loadMoreWrapper.hidden = !hasMore;
             }
         };
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                shownCount = Math.min(shownCount + PAGE_SIZE, totalCount);
+                performFilter();
+            });
+        }
 
         const scheduleFilter = () => {
             if (rafId !== null) return;
