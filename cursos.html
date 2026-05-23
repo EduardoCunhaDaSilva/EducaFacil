@@ -105,6 +105,29 @@
     <!-- Courses grid -->
     <section class="courses-page">
       <div class="container">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-box__icon"></i>
+          <input
+            type="search"
+            id="course-search"
+            class="search-box__input"
+            placeholder="Buscar curso (ex: enfermagem, mecânica, marketing...)"
+            autocomplete="off"
+            spellcheck="false"
+            maxlength="80"
+            aria-label="Buscar curso"
+          />
+          <button
+            type="button"
+            class="search-box__clear"
+            aria-label="Limpar busca"
+            hidden
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <p class="search-box__count" aria-live="polite"></p>
+
         <div class="course-grid">
           <article class="course-card">
             <div class="course-card__banner course-card__banner--admin">
@@ -2080,6 +2103,14 @@
               </p>
             </div>
           </article>
+        </div>
+
+        <div class="courses-no-results" hidden>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <p>Nenhum curso encontrado.</p>
+          <p class="courses-no-results__hint">
+            Tente outra palavra-chave ou fale com um consultor abaixo.
+          </p>
         </div>
 
         <div class="courses-page__cta">

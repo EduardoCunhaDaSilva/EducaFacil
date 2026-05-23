@@ -133,6 +133,175 @@
         start();
     }
 
+    /* ---------- Course search (cursos.html) ---------- */
+    const searchInput = document.querySelector('#course-search');
+    if (searchInput) {
+        const courseCards = document.querySelectorAll('.course-card');
+        const searchClear = document.querySelector('.search-box__clear');
+        const searchCount = document.querySelector('.search-box__count');
+        const noResults = document.querySelector('.courses-no-results');
+        const courseGrid = document.querySelector('.course-grid');
+
+        const MAX_QUERY_LEN = 80;
+
+        // Palavras-chave alternativas por curso: abreviações, sinônimos,
+        // grafias comuns sem acento, termos correlatos.
+        const COURSE_ALIASES = {
+            'Administração': ['adm', 'admin', 'administracao', 'gestao'],
+            'Informática': ['ti', 'computacao', 'computador', 'pc', 'tecnologia da informacao', 'informatica'],
+            'Saúde': ['saude', 'area saude', 'medicina'],
+            'Logística': ['logistica', 'estoque', 'almoxarifado', 'transporte', 'supply chain', 'expedicao'],
+            'Marketing Digital': ['mkt', 'marketing', 'midias sociais', 'redes sociais', 'instagram', 'facebook', 'ads', 'anuncios', 'digital marketing', 'social media'],
+            'Recursos Humanos': ['rh', 'gestao de pessoas', 'departamento pessoal', 'dp', 'recrutamento'],
+            'Agente Comunitário de Saúde': ['acs', 'agente saude', 'agente comunitario', 'sus'],
+            'Agrimensura': ['topografia', 'topografo', 'mapas', 'georreferenciamento'],
+            'Agricultura': ['agro', 'lavoura', 'plantacao', 'cultivo'],
+            'Agroindústria': ['agro', 'agroindustria', 'industria alimenticia', 'beneficiamento'],
+            'Agropecuária': ['agro', 'fazenda', 'gado', 'pecuaria', 'rural'],
+            'Análises Clínicas': ['laboratorio', 'lab', 'analises', 'hemograma', 'exames', 'patologia'],
+            'Automação Industrial': ['automacao', 'robotica', 'plc', 'clp', 'controle processos'],
+            'Biotecnologia': ['biotec', 'dna', 'genetica', 'biologia molecular'],
+            'Contabilidade': ['contabil', 'contador', 'contadora', 'financas', 'fiscal', 'balanco', 'imposto'],
+            'Cuidados de Idosos': ['cuidador', 'idoso', 'geriatria', 'enfermagem idosos', 'home care'],
+            'Defesa Civil': ['emergencia', 'salvamento', 'desastres', 'protecao civil'],
+            'Design Gráfico': ['designer grafico', 'photoshop', 'illustrator', 'arte digital', 'diagramacao', 'design'],
+            'Designer de Interiores': ['decoracao', 'ambientes', 'design interiores', 'arquitetura interiores', 'decorador'],
+            'Desenvolvimento de Sistemas': ['programacao', 'programador', 'dev', 'developer', 'software', 'ds', 'codigo', 'sistemas', 'java', 'python', 'app', 'aplicativo'],
+            'Edificações': ['construcao civil', 'obras', 'engenharia civil', 'pedreiro', 'mestre obras', 'construcao'],
+            'Eletromecânica': ['mecatronica', 'eletromec', 'eletro mecanica'],
+            'Eletrotécnica': ['eletricista', 'eletrica', 'eletro', 'instalacao eletrica'],
+            'Eletrônica': ['eletronica', 'circuitos', 'placa', 'microchip', 'reparo eletronico'],
+            'Enfermagem': ['enfermeira', 'enfermeiro', 'tec enfermagem', 'auxiliar enfermagem', 'hospital'],
+            'Equipamentos Biomédicos': ['biomedico', 'biomedicina', 'equipamentos hospitalares', 'engenharia clinica'],
+            'Estética': ['esteticista', 'beleza', 'spa', 'cuidados pele', 'estetica facial', 'estetica corporal'],
+            'Eventos': ['producao eventos', 'festas', 'cerimonial', 'organizador', 'casamento'],
+            'Farmácia': ['farmaceutico', 'farmaceutica', 'balconista farmacia', 'atendente farmacia', 'remedio', 'drogaria'],
+            'Gastronomia': ['culinaria', 'chef', 'cozinha', 'cozinheiro', 'cozinheira', 'gastro', 'comida'],
+            'Gerência em Saúde': ['gestao saude', 'gestor hospital', 'administracao hospitalar', 'gestao hospitalar'],
+            'Guia de Turismo': ['turismo', 'guia', 'viagem', 'turistico', 'guia turistico', 'viagens'],
+            'Informática para Internet': ['web', 'internet', 'html', 'css', 'javascript', 'webdesign', 'web designer', 'frontend', 'front-end', 'site', 'desenvolvimento web', 'wordpress'],
+            'Manutenção de Máquinas Industriais': ['manutencao industrial', 'industrial', 'mecanico industrial', 'mantenedor'],
+            'Manutenção de Máquinas Navais': ['navio', 'naval', 'marinha', 'embarcacao', 'motor barco', 'mecanico naval', 'maritimo'],
+            'Máquinas Pesadas': ['trator', 'escavadeira', 'retroescavadeira', 'operador maquinas', 'caminhao', 'carregadeira', 'rolo compactador'],
+            'Mecânica': ['mecanico', 'motor', 'motores', 'automotiva', 'carro', 'oficina', 'reparo veiculos'],
+            'Meio Ambiente': ['ambiental', 'ecologia', 'sustentabilidade', 'natureza', 'reciclagem', 'ecologico', 'verde'],
+            'Metalurgia': ['metal', 'metais', 'aco', 'siderurgia', 'fundicao'],
+            'Mineração': ['minerador', 'mina', 'minas', 'geologia', 'extracao mineral'],
+            'Nutrição e Dietética': ['nutricionista', 'nutricao', 'dieta', 'alimentacao', 'reeducacao alimentar', 'nutri'],
+            'Óptica': ['optico', 'oculos', 'oticista', 'otica', 'lentes', 'visao'],
+            'Prevenção e Combate ao Incêndio': ['bombeiro', 'incendio', 'fogo', 'brigadista', 'brigada', 'combate fogo'],
+            'Qualidade': ['controle qualidade', 'iso', 'auditoria', 'cq', 'inspecao'],
+            'Química': ['quimico', 'laboratorio quimico', 'industria quimica', 'reacoes'],
+            'Radiologia': ['raio x', 'raio-x', 'rx', 'radio', 'radiografia', 'tecnico radiologia', 'tomografia', 'ressonancia'],
+            'Redes de Computadores': ['rede', 'redes', 'network', 'infraestrutura', 'servidor', 'cabeamento', 'wifi', 'cisco', 'ti'],
+            'Refrigeração e Climatização': ['ar condicionado', 'ar-condicionado', 'refrigeracao', 'climatizacao', 'geladeira', 'frigorifico', 'split', 'hvac'],
+            'Saúde Bucal': ['dentista', 'dental', 'odontologia', 'odonto', 'dente', 'dentes', 'auxiliar dentista', 'asb'],
+            'Secretaria Escolar': ['secretaria', 'escola', 'administracao escolar', 'recepcao escolar', 'matricula'],
+            'Segurança do Trabalho': ['st', 'seguranca trabalho', 'epi', 'prevencao acidentes', 'sst', 'tecnico seguranca', 'nr'],
+            'Serviços Jurídicos': ['direito', 'advogado', 'juridico', 'advocacia', 'justica', 'oab', 'leis', 'forum', 'paralegal'],
+            'Sistemas de Energia Renovável': ['energia solar', 'painel solar', 'eolica', 'energia limpa', 'fotovoltaica', 'renovavel'],
+            'Soldagem': ['soldador', 'solda', 'mig', 'tig', 'eletrodo', 'mag', 'metalurgia solda'],
+            'Telecomunicações': ['telecom', 'telefonia', 'antenas', 'fibra optica', 'provedor', '5g', 'satelite'],
+            'Tradução e Interpretação de Libras': ['libras', 'surdo', 'surdos', 'lingua sinais', 'deficiente auditivo', 'interprete libras', 'inclusao'],
+            'Transações Imobiliárias': ['corretor', 'corretora', 'imoveis', 'imobiliaria', 'creci', 'venda imovel', 'tti'],
+            'Trânsito': ['transito', 'agente transito', 'fiscal transito', 'ctb', 'auto escola', 'multas'],
+            'Veterinária': ['veterinario', 'vet', 'animais', 'pet', 'cachorro', 'gato', 'aux veterinario', 'clinica veterinaria'],
+            'Vendas': ['vendedor', 'vendedora', 'comercial', 'atendimento', 'varejo', 'balconista', 'representante']
+        };
+
+        const normalize = s => s
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[̀-ͯ]/g, '');
+
+        const normalizedAliases = {};
+        for (const [name, aliases] of Object.entries(COURSE_ALIASES)) {
+            normalizedAliases[normalize(name)] = aliases.map(normalize).join(' ');
+        }
+
+        const courseData = Array.from(courseCards).map(card => {
+            const tagName = card.querySelector('.course-card__tag strong');
+            const title = card.querySelector('.course-card__title');
+            const nameText = tagName ? tagName.textContent : '';
+            const titleText = title ? title.textContent : '';
+            const normalizedName = normalize(nameText);
+            const aliasText = normalizedAliases[normalizedName] || '';
+            const searchable = `${normalize(nameText)} ${normalize(titleText)} ${aliasText}`;
+            return { card, normalized: searchable, visible: true };
+        });
+
+        const totalCount = courseData.length;
+        let rafId = null;
+        let lastTerm = null;
+
+        const performFilter = () => {
+            rafId = null;
+            const raw = searchInput.value.slice(0, MAX_QUERY_LEN).trim();
+            const term = normalize(raw);
+
+            if (term === lastTerm) return;
+            lastTerm = term;
+
+            let visible = 0;
+            for (const item of courseData) {
+                const match = term === '' || item.normalized.includes(term);
+                if (match !== item.visible) {
+                    item.card.classList.toggle('is-hidden', !match);
+                    item.visible = match;
+                }
+                if (match) visible++;
+            }
+
+            if (searchCount) {
+                if (term === '') {
+                    searchCount.textContent = `${totalCount} cursos disponíveis`;
+                } else if (visible === 0) {
+                    searchCount.textContent = '';
+                } else if (visible === 1) {
+                    searchCount.textContent = '1 curso encontrado';
+                } else {
+                    searchCount.textContent = `${visible} cursos encontrados`;
+                }
+            }
+
+            if (noResults) {
+                noResults.hidden = !(visible === 0 && term !== '');
+            }
+
+            if (courseGrid) {
+                courseGrid.style.display = visible === 0 && term !== '' ? 'none' : '';
+            }
+
+            if (searchClear) {
+                searchClear.hidden = term === '';
+            }
+        };
+
+        const scheduleFilter = () => {
+            if (rafId !== null) return;
+            rafId = requestAnimationFrame(performFilter);
+        };
+
+        searchInput.addEventListener('input', scheduleFilter);
+
+        if (searchClear) {
+            searchClear.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.focus();
+                performFilter();
+            });
+        }
+
+        searchInput.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                performFilter();
+            }
+        });
+
+        performFilter();
+    }
+
     /* ---------- Header shadow on scroll ---------- */
     if (header) {
         const onScroll = () => {

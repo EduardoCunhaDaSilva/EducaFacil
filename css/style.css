@@ -617,6 +617,114 @@ ul {
   gap: 28px;
 }
 
+/* ============================
+   COURSE SEARCH
+   ============================ */
+.search-box {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 12px;
+}
+
+.search-box__icon {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.search-box__input {
+  width: 100%;
+  padding: 18px 52px 18px 56px;
+  border: 2px solid var(--gray-200);
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--gray-800);
+  background: var(--white);
+  outline: none;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box__input::placeholder {
+  color: var(--gray-400);
+}
+
+.search-box__input:focus {
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 4px rgba(40, 96, 255, 0.12);
+}
+
+.search-box__input::-webkit-search-decoration,
+.search-box__input::-webkit-search-cancel-button,
+.search-box__input::-webkit-search-results-button,
+.search-box__input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.search-box__clear {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--gray-200);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.search-box__clear:hover {
+  background: var(--blue-500);
+  color: var(--white);
+}
+
+.search-box__count {
+  text-align: center;
+  margin: 0 0 24px;
+  color: var(--gray-600);
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.course-card.is-hidden {
+  display: none;
+}
+
+.courses-no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-600);
+}
+
+.courses-no-results > i {
+  font-size: 48px;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+}
+
+.courses-no-results p {
+  margin: 8px 0;
+  font-size: 18px;
+  color: var(--gray-800);
+}
+
+.courses-no-results__hint {
+  font-size: 14px !important;
+  color: var(--gray-600) !important;
+}
+
 .course-card {
   background: var(--white);
   border: 1px solid var(--gray-200);
